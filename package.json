@@ -1,0 +1,37 @@
+{
+  "name": "express-resful-api-typescript-example",
+  "version": "1.0.0",
+  "description": "Example express resful api using typescript",
+  "license": "ISC",
+  "author": "Ryoogen Media by Muhammad Bintang",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "winston": "^3.17.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
+    "@jest/globals": "^29.7.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
+    "babel-jest": "^29.7.0",
+    "express": "^4.21.2",
+    "jest": "^29.7.0",
+    "prisma": "^6.1.0",
+    "supertest": "^7.0.0",
+    "typescript": "^5.7.2"
+  }
+}
