@@ -11,6 +11,3 @@ web.use(express.json());
 web.use(publicRouter);
 web.use(privateRouter);
 web.use(errorMiddleware);
-web.use(adminRouter);
-web.use(superadminRouter);
-web.use(userRouter);

@@ -11,3 +11,6 @@ export enum ErrorCodes {
   VALIDATION_ERROR = 400,
   SERVER_ERROR = 500,
 }
+
+export const PORT: number = Number(process.env.LISTENING_PORT) ?? 3000;
+export const NAME_APP: string = String(process.env.NAME_APP) ?? "Ryoogen Media";
