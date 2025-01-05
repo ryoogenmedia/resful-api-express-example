@@ -1,13 +1,33 @@
-import { NextFunction, Response } from "express";
+import { Response, NextFunction } from "express";
 import { UserRequest } from "../type/user-request";
+import { prismaClient } from "../app/database";
 import { Roles } from "../config/ryoogen";
-import { checkRole, checkToken } from "../app/helpers/ryoogen-helper";
 
-const adminMiddleware = async (
-  res: Response,
+export const adminMiddleware = async (
   req: UserRequest,
+  res: Response,
   next: NextFunction
 ) => {
-  const user = await checkToken(res, req, next);
-  await checkRole(user, req, next, Roles.ADMIN);
+  const token = req.get("X-API-TOKEN");
+
+  if (token) {
+    const user = await prismaClient.user.findFirst({
+      where: {
+        token: token,
+      },
+    });
+
+    if (user && user.roles == Roles.ADMIN) {
+      req.user = user;
+      next();
+      return;
+    }
+  }
+
+  res
+    .status(401)
+    .json({
+      errors: "Unauthorized",
+    })
+    .end();
 };
