@@ -1,13 +1,11 @@
-import { User } from "@prisma/client";
-import { Request, Response, NextFunction } from "express";
+import { Response, Request, NextFunction } from "express";
 import { ZodError } from "zod";
 import { ResponseError } from "../error/response-error";
 
 export const errorMiddleware = async (
-  user: User,
+  error: Error,
   req: Request,
   res: Response,
-  error: Error,
   next: NextFunction
 ) => {
   if (error instanceof ZodError) {
