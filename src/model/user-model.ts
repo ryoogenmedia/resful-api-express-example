@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 
 export type UserResponse = {
-  id: number;
+  id: string;
   username: string;
   name: string;
   token?: string;
