@@ -6,6 +6,8 @@ export type UserResponse = {
   name: string;
   token?: string;
   roles: string;
+  created_at: Date;
+  updated_at: Date;
 };
 
 export function toUserResponse(user: User): UserResponse {
@@ -15,5 +17,7 @@ export function toUserResponse(user: User): UserResponse {
     name: user.name,
     token: user.token!,
     roles: user.roles,
+    created_at: user.created_at,
+    updated_at: user.updated_at,
   };
 }

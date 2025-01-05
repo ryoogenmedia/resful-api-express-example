@@ -1,30 +1,17 @@
 import { Response, NextFunction } from "express";
 import { UserRequest } from "../type/user-request";
-import { prismaClient } from "../main";
+import { ErrorCodes } from "../config/ryoogen";
+import { checkToken } from "../app/helpers/ryoogen-helper";
 
 export const authMiddleware = async (
   req: UserRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.get("X-API-TOKEN");
-
-  if (token) {
-    const user = await prismaClient.user.findFirst({
-      where: {
-        token: token,
-      },
-    });
-
-    if (user) {
-      req.user = user;
-      next();
-      return;
-    }
-  }
+  await checkToken(res, req, next);
 
   res
-    .status(401)
+    .status(ErrorCodes.UNAUTHORIZED)
     .json({
       errors: "Unauthorized",
     })
